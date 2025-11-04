@@ -1,0 +1,226 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+body {
+  height: 100vh;
+  background: linear-gradient(to bottom, #ffb07c, #7b5da8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Georgia", serif;
+  overflow: hidden;
+}
+
+.book {
+  position: relative;
+  width: 90vw;
+  max-width: 480px;
+  height: 65vh;
+  perspective: 500px;
+}
+
+.page {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #fffaf0;
+  border-radius: 10px;
+  padding: 30px;
+  transform-origin: left center;
+  transition: transform 0.8s ease, box-shadow 0.8s ease;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+  overflow-y: auto;
+  backface-visibility: hidden;
+}
+
+.page.flipped {
+  transform: rotateY(-180deg);
+}
+
+.page h2 {
+  color: #4a3b2d;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.page h3 {
+  text-align: center;
+  color: #4a3b2d;
+margin-bottom: 15px;
+}
+
+.page p {
+  color: #5b4634;
+  margin-bottom: 12px;
+  text-align: justify;
+  line-height: 1.5;
+}
+
+.cover {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: linear-gradient(to top, #ff9966, #cc66cc);
+  color: #fffaf0;
+}
+
+.cover.front h1 {
+  font-family: "Pacifico", cursive;
+  font-size: 1.8rem;
+  margin-bottom: 0.8rem;
+  text-align: center;
+}
+
+.cover-content p {
+  font-style: italic;
+  text-align: center;
+}
+
+.cover.back {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cover.back .quote {
+  font-size: 1rem;
+  font-style: italic;
+  font-weight: bold;
+  color: #fffaf0;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  padding: 20px;
+}
+
+.page-number {
+  position: absolute;
+  bottom: 15px;
+  right: 20px;
+  font-size: 0.8rem;
+  color: #6b5843;
+  font-style: italic;
+  opacity: 0.7;
+}
+
+ /* === tambahan baru === */
+
+#helpBtn {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  width: 35px;
+  height: 35px;
+  background: rgba(255, 255, 255, 0.25);
+  color: #fff;
+  font-weight: bold;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  font-size: 1rem;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  transition: 0.3s;
+  z-index: 999;
+}
+#helpBtn:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+#helpPopup {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  animation: fadeIn 0.5s ease;
+}
+
+#helpPopup.active {
+  display: flex;
+}
+
+.help-content {
+  width: 80%;
+  max-width: 380px;
+  max-height: 70%;
+  overflow-y: auto;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  animation: slideUp 0.5s ease;
+}
+
+.help-content h2 {
+  text-align: center;
+  margin-bottom: 15px;
+  color: #4a3b2d;
+}
+
+.help-content p {
+  margin-bottom: 10px;
+  color: #5b4634;
+  line-height: 1.5;
+}
+
+#closeHelp {
+  display: block;
+  margin: 10px auto 0;
+  padding: 8px 16px;
+  background: #7b5da8;
+  color: #fffaf0;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#pageSearch {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(5px);
+  padding: 5px 8px;
+  border-radius: 10px;
+  z-index: 999;
+}
+
+#pageSearch input {
+  width: 55px;
+  border: none;
+  outline: none;
+  padding: 4px;
+  background: transparent;
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+}
+
+#pageSearch button {
+  border: none;
+  background: rgba(255, 255, 255, 0.4);
+  color: #4a3b2d;
+  border-radius: 6px;
+  padding: 4px 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes slideUp {
+  from {transform: translateY(30px); opacity: 0;}
+  to {transform: translateY(0); opacity: 1;}
+}
